@@ -1,2 +1,3 @@
 # Employee-Tracker
 Coming Soon...
+Let's learn SQL!
