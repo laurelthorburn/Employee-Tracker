@@ -11,25 +11,10 @@ promptOptions()
 function promptOptions() {
   return inquirer.prompt([
     {
-        type: "input",
-        name: "managerName",
-        message: "What is the team manager's name?"
-    },
-    {
-        type: "input",
-        name: "managerID",
-        message: "What is the team manager's employee ID?"
-    },
-    {
-        type: "input",
-        name: "managerEmail",
-        message: "What is the team manager's email address?"
-    },
-    {
-        type: "input",
-        name: "managerOffice",
-        message: "What is the team manager's office number?"
-    },
+        type: "list",
+        name: "displayOptions",
+        choices: ["View All Departments", "View All Roles", "View All Employees", "Add Department", "Add Role", "Add Employee", "Update Employee Role"]
+    }
   ])
  
   .then((answers) => {
