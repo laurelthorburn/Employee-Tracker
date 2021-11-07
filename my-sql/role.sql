@@ -1,0 +1,4 @@
+-- id: INT PRIMARY KEY
+-- title: VARCHAR(30) TO HOLD ROLE TITLE
+-- salary: DECIMAL to hold role salary
+-- department_id: INT to hold reference to department role blongs to
