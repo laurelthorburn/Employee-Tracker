@@ -18,16 +18,30 @@ function promptOptions() {
   ])
  
   .then((answers) => {
-    const manager = new Manager(answers.managerName, answers.managerID, answers.managerEmail, answers.managerOffice);
-    //want to push little manager storing in an mega array and then later will pull from the mega array to create the cards
-
-    //pushing the manager into the mega array named employeeArray
-    employeeArray.push(manager)
-    console.log("welcome to the team, manager")
-    promptContinue();
-
+    //   console.log(answers); //{ displayOptions: 'Add Department' }
+    if (answers.displayOptions === "View All Departments"){
+        console.log("View All Departments was selected");
+    }
+    if (answers.displayOptions === "View All Roles"){
+        console.log("View All Roles was selected");
+    }
+    if (answers.displayOptions === "View All Employees"){
+        console.log("View All Employees was selected");
+    }
+    if (answers.displayOptions === "Add Department"){
+        console.log("Add Department was selected");
+    }
+    if (answers.displayOptions === "Add Role"){
+        console.log("Add Role was selected");
+    }
+    if (answers.displayOptions === "Add Employee"){
+        console.log("Add Employee was selected");
+    }
+    if (answers.displayOptions === "Update Employee Role"){
+        console.log("Update Employee Role was selected");
+    }
   })
-// };
+};
 
 // //engineer prompt questions built into a function
 // function promptEngineer(){
@@ -114,4 +128,3 @@ function promptOptions() {
 //     }
 //   })
 //   };
-
