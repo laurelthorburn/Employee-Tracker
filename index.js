@@ -29,13 +29,16 @@ function promptOptions() {
         console.log("View All Employees was selected");
     }
     if (answers.displayOptions === "Add Department"){
-        console.log("Add Department was selected");
+        addDepartment();
+        // console.log("Add Department was selected");
     }
     if (answers.displayOptions === "Add Role"){
-        console.log("Add Role was selected");
+        addRole();
+        // console.log("Add Role was selected");
     }
     if (answers.displayOptions === "Add Employee"){
-        console.log("Add Employee was selected");
+        addEmployee();
+        // console.log("Add Employee was selected");
     }
     if (answers.displayOptions === "Update Employee Role"){
         console.log("Update Employee Role was selected");
@@ -43,37 +46,88 @@ function promptOptions() {
   })
 };
 
-// //engineer prompt questions built into a function
-// function promptEngineer(){
-//   return inquirer.prompt([
-// {
-//       type: "input",
-//       name: "engName",
-//       message: "What is the engineer's name?"
-//     },
-//     {
-//       type: "input",
-//       name: "engID",
-//       message: "What is the team engineer's employee ID?"
-//     },
-//     {
-//       type: "input",
-//       name: "engEmail",
-//       message: "What is the engineer's email address?"
-//     },
-//     {
-//       type: "input",
-//       name: "engGit",
-//       message: "What is the engineer's github username?"
-//     },
-//   ])
-//   .then((answers) => {
-//     const engineer = new Engineer(answers.engName, answers.engID, answers.engEmail, answers.engGit);
-//     employeeArray.push(engineer);
-//     console.log("welcome to the team, engineer");
-//     promptContinue();
-//   })
-// };
+//Add a Department Prompts and need to add to database once entered
+function addDepartment(){
+  return inquirer.prompt([
+    {
+      type: "input",
+      name: "departmentName",
+      message: "What is the name of the department?"
+    },
+
+  ])
+  .then((answers) => {
+    //add to database here
+    console.log(answers.departmentName); //works
+    promptOptions();
+  })
+};
+
+//Add a Role Prompts and need to add to database once entered -- change to choices?
+function addRole(){
+  return inquirer.prompt([
+    {
+      type: "input",
+      name: "roleName",
+      message: "What is the name of the role?"
+    },
+    {
+      type: "input",
+      name: "roleSalary",
+      message: "What is the salary of the role?"
+    },
+    {
+      type: "input",
+      name: "roleDepartment",
+      message: "What is the department of the role?"
+    },
+
+  ])
+  .then((answers) => {
+    //add to database here
+    console.log(answers.roleName); //works
+    console.log(answers.roleSalary); //works
+    console.log(answers.roleDepartment); //works
+    //need to add to the database
+    promptOptions();
+  })
+};
+
+//Add a Employee Prompts and need to add to database once entered
+function addEmployee(){
+  return inquirer.prompt([
+    {
+      type: "input",
+      name: "employeeFirstName",
+      message: "What is the employee's first name?"
+    },
+    {
+      type: "input",
+      name: "employeeLastName",
+      message: "What is the employee's last name?"
+    },
+    {
+      type: "input",
+      name: "employeeRole",
+      message: "What is the employee's role?"
+    },
+    {
+      type: "input",
+      name: "employeeManager",
+      message: "Who is the employee's manager?"
+    },
+
+  ])
+  .then((answers) => {
+    //add to database here
+    console.log(answers.employeeFirstName); //works
+    console.log(answers.employeeLastName); //works
+    console.log(answers.employeeRole); //works
+    console.log(answers.employeeManager); //works
+    //add to the database
+    promptOptions();
+  })
+};
 
 // //intern prompt questions built into a function
 // function promptIntern(){
