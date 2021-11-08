@@ -20,13 +20,16 @@ function promptOptions() {
   .then((answers) => {
     //   console.log(answers); //{ displayOptions: 'Add Department' }
     if (answers.displayOptions === "View All Departments"){
-        console.log("View All Departments was selected");
+        viewDepartments();
+        // console.log("View All Departments was selected");
     }
     if (answers.displayOptions === "View All Roles"){
-        console.log("View All Roles was selected");
+        viewRoles();
+        // console.log("View All Roles was selected");
     }
     if (answers.displayOptions === "View All Employees"){
-        console.log("View All Employees was selected");
+        viewEmployees();
+        // console.log("View All Employees was selected");
     }
     if (answers.displayOptions === "Add Department"){
         addDepartment();
@@ -41,11 +44,13 @@ function promptOptions() {
         // console.log("Add Employee was selected");
     }
     if (answers.displayOptions === "Update Employee Role"){
-        console.log("Update Employee Role was selected");
+        updateEmployee();
+        // console.log("Update Employee Role was selected");
     }
   })
 };
 
+// ------------------------------------------------------------------ ADDING DEPARTMENT/ROLE/EMPLOYEE -----------------------------------------
 //Add a Department Prompts and need to add to database once entered
 function addDepartment(){
   return inquirer.prompt([
@@ -129,56 +134,20 @@ function addEmployee(){
   })
 };
 
-// //intern prompt questions built into a function
-// function promptIntern(){
-//   return inquirer.prompt([
-// {
-//   type: "input",
-//   name: "internName",
-//   message: "What is the intern's name?"
-// },
-// {
-//   type: "input",
-//   name: "internID",
-//   message: "What is the team intern's employee ID?"
-// },
-// {
-//   type: "input",
-//   name: "internEmail",
-//   message: "What is the intern's email address?"
-// },
-// {
-//   type: "input",
-//   name: "school",
-//   message: "What is the intern's school?"
-// },
-// ])
-// .then((answers) => {
-//   const intern = new Intern(answers.internName, answers.internID, answers.internEmail, answers.school);
-//   employeeArray.push(intern);
-//   console.log("welcome to the team, intern");
-//   promptContinue();
-// })
-// };
+// ------------------------------------------------------------------ VIEWING DEPARTMENT/ROLE/EMPLOYEE -----------------------------------------
+function viewDepartments(){
+    console.log("You are viewing all of the departments :)");
+};
 
-// // User choice path
-// function promptContinue(){
-//     return inquirer.prompt([
-//     {
-//       type: "list",
-//       name: "job", 
-//       choices: ["Engineer", "Intern", "Finish building my team."]
-//     },
-//   ])
-//   .then((answers) => {
-//     if(answers.job === "Engineer"){
-//       promptEngineer();
-//     } else if (answers.job === "Intern"){
-//       promptIntern();
-//     } else {
-//       //calling file and then calling function w/in said file
-//       generate.generateHTML(employeeArray);
-//       console.log("Great job building your team!")
-//     }
-//   })
-//   };
+function viewEmployees(){
+    console.log("You are viewing all of the employees :)");
+};
+
+function viewRoles(){
+    console.log("You are viewing all of the roles :)");
+};
+
+// ------------------------------------------------------------------ UPDATING EMPLOYEE -----------------------------------------
+function updateEmployee(){
+    console.log("You are updating employee,, please consider a pay increase O:-)");
+};
