@@ -91,7 +91,10 @@ function addDepartment(){
   ])
   .then((answers) => {
     //add to database here
-    console.log(answers.departmentName); //works
+    db.query(`SELECT * FROM employeetracker_db.department; INSERT INTO department VALUE (DEFAULT, ${answers.departmentName});`, function (err, results) { //not working
+      console.log(answers.departmentName); //
+    })
+    console.log("Added " + answers.departmentName + " to departments"); //works
     promptOptions();
   })
 };
@@ -165,7 +168,7 @@ function addEmployee(){
 // ------------------------------------------------------------------ VIEWING DEPARTMENT/ROLE/EMPLOYEE -----------------------------------------
 function viewDepartments(){
   db.query('SELECT * FROM employeetracker_db.department;', function (err, results) {
-    console.log(results);
+    console.table(results);
     promptOptions();
   });
 
@@ -175,7 +178,7 @@ function viewDepartments(){
 function viewEmployees(){
 
   db.query('SELECT * FROM employeetracker_db.employee;', function (err, results) {
-    console.log(results);
+    console.table(results);
     promptOptions();
 
     console.log("You are viewing all of the employees :)");
@@ -186,7 +189,7 @@ function viewRoles(){
     console.log("You are viewing all of the roles :)");
 
     db.query('SELECT * FROM employeetracker_db.role;', function (err, results) {
-      console.log(results);
+      console.table(results);
       promptOptions();
     })
 };
