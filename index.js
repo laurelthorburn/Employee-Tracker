@@ -166,17 +166,29 @@ function addEmployee(){
 function viewDepartments(){
   db.query('SELECT * FROM employeetracker_db.department;', function (err, results) {
     console.log(results);
+    promptOptions();
   });
 
     console.log("You are viewing all of the departments :)");
 };
 
 function viewEmployees(){
+
+  db.query('SELECT * FROM employeetracker_db.employee;', function (err, results) {
+    console.log(results);
+    promptOptions();
+
     console.log("You are viewing all of the employees :)");
+})
 };
 
 function viewRoles(){
     console.log("You are viewing all of the roles :)");
+
+    db.query('SELECT * FROM employeetracker_db.role;', function (err, results) {
+      console.log(results);
+      promptOptions();
+    })
 };
 
 // ------------------------------------------------------------------ UPDATING EMPLOYEE -----------------------------------------
