@@ -2,6 +2,32 @@
 
 const inquirer = require('inquirer');
 const mysql = require('mysql2');
+// const db = require('./db/config'); //jumps prompt
+
+// -----------------------------------
+// const mysql = require('mysql2');
+require('dotenv').config() //connecting our .env
+
+
+// create the connection to database
+const db = mysql.createConnection(
+    {
+      host: process.env.DB_HOST,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME
+    },
+    console.log(`Connected to the employeetracker_db database.`)
+  );
+
+  db.connect( (err) => {
+    if (err){
+      throw error;
+    }
+  });
+
+
+// ------------------------------------------
 
 
 //begin function with manager questions
@@ -9,6 +35,7 @@ promptOptions()
 
 //manager questions built into a function
 function promptOptions() {
+
   return inquirer.prompt([
     {
         type: "list",
@@ -18,7 +45,8 @@ function promptOptions() {
   ])
  
   .then((answers) => {
-    //   console.log(answers); //{ displayOptions: 'Add Department' }
+ 
+      console.log(answers); //{ displayOptions: 'Add Department' }
     if (answers.displayOptions === "View All Departments"){
         viewDepartments();
         // console.log("View All Departments was selected");
