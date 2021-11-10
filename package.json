@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/laurelthorburn/Employee-Tracker#readme",
   "dependencies": {
-    "inquirer": "^8.2.0"
+    "dotenv": "^10.0.0",
+    "inquirer": "^8.2.0",
+    "mysql2": "^2.3.3-rc.0"
   }
 }

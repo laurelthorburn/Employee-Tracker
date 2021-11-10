@@ -1,8 +1,8 @@
 //enter all prompts here
 
 const inquirer = require('inquirer');
+const mysql = require('mysql2');
 
-// const employeeArray = [];
 
 //begin function with manager questions
 promptOptions()
