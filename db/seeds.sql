@@ -20,10 +20,10 @@ VALUES ("Sales Lead", 150000, 1), -- 1
 ("CEO", 999999, 5); -- 9
         
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
-	VALUES ("Pei", "Wen", 3 , NULL), -- 1
-	("Daniel", "Soledad", 1 , NULL), -- 2
-	("Samuel", "Fox", 4 , NULL), -- 3
-    ("Ryan" "Paragas", 4, 1),
-    ("Siddharth" "Desai", 6, 2),
-    ("Ryan" "Mcculloch", 4, 3),
+	VALUES ("Pei", "Wen", 3, NULL), -- 1
+	("Daniel", "Soledad", 1, NULL), -- 2
+	("Samuel", "Fox", 7, NULL), -- 3
+    ("Ryan", "Paragas", 4, 1),
+    ("Siddharth", "Desai", 6, 2),
+    ("Ryan", "Mcculloch", 8, 3),
     ("Laurel", "Thorburn", 9, NULL);

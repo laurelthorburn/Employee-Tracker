@@ -164,6 +164,10 @@ function addEmployee(){
 
 // ------------------------------------------------------------------ VIEWING DEPARTMENT/ROLE/EMPLOYEE -----------------------------------------
 function viewDepartments(){
+  db.query('SELECT * FROM employeetracker_db.department;', function (err, results) {
+    console.log(results);
+  });
+
     console.log("You are viewing all of the departments :)");
 };
 
