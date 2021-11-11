@@ -203,5 +203,18 @@ function viewRoles(){
 
 // ------------------------------------------------------------------ UPDATING EMPLOYEE -----------------------------------------
 function updateEmployee(){
-    console.log("You are updating employee,, please consider a pay increase O:-)");
-};
+  db.query('SELECT * FROM employeetracker_db.employee;', function (err, results) {
+    // console.log("You are updating employee,, please consider a pay increase O:-)");
+    // console.log(results);
+
+    let employeeNameArray = []
+results.forEach(result => employeeNameArray.push(result.first_name + ' ' + result.last_name));
+    // console.log(results.forEach(result => console.log(result.first_name + " " + result.last_name))); // works
+    return inquirer.prompt([
+      {
+        type: "list",
+        name: "updateEmployee",
+        choices: employeeNameArray
+      },
+    ]);
+})};
