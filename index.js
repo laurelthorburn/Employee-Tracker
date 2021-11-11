@@ -89,12 +89,13 @@ function addDepartment(){
     },
 
   ])
-  .then((answers) => {
+  .then(function (answer) {
     //add to database here
-    db.query(`SELECT * FROM employeetracker_db.department; INSERT INTO department VALUE (DEFAULT, ${answers.departmentName});`, function (err, results) { //not working
-      console.log(answers.departmentName); //
+    console.log(answer.departmentName);
+    db.query("INSERT INTO department (name) VALUES (?)", [answer.departmentName], function (err, results) { //not working
+     console.log(err)
     })
-    console.log("Added " + answers.departmentName + " to departments"); //works
+    // console.log("Added " + answers.departmentName + " to departments"); //works
     promptOptions();
   })
 };
