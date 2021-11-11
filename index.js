@@ -165,6 +165,9 @@ function addEmployee(){
     console.log(answers.employeeRole); //works
     console.log(answers.employeeManager); //works
     //add to the database
+    db.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)", [answers.employeeFirstName, answers.employeeLastName, answers.employeeRole, answers.employeeManager], function (err, results) { // working, the placeholder needed to be in ()
+      console.log(err);
+    })
     promptOptions();
   })
 };
