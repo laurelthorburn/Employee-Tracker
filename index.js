@@ -204,17 +204,30 @@ function viewRoles(){
 // ------------------------------------------------------------------ UPDATING EMPLOYEE -----------------------------------------
 function updateEmployee(){
   db.query('SELECT * FROM employeetracker_db.employee;', function (err, results) {
-    // console.log("You are updating employee,, please consider a pay increase O:-)");
-    // console.log(results);
-
-    let employeeNameArray = []
-results.forEach(result => employeeNameArray.push(result.first_name + ' ' + result.last_name));
-    // console.log(results.forEach(result => console.log(result.first_name + " " + result.last_name))); // works
+    let employeeNameArray = [];
+    results.forEach(result => employeeNameArray.push(result.first_name + ' ' + result.last_name));
     return inquirer.prompt([
       {
         type: "list",
         name: "updateEmployee",
         choices: employeeNameArray
       },
-    ]);
-})};
+    ]) //maybe promise.all
+    .then((answer) => {
+    console.log(answer);
+      db.query('SELECT * FROM employeetracker_db.role;', function (err, results) {
+        let roleArray = [];
+        results.forEach(result => roleArray.push(result.title));
+        return inquirer.prompt([
+          {
+            type: "list",
+            name: "updateEmployee",
+            choices: roleArray
+          },
+        ])
+    .then((answer) => {
+      console.log("Employee has been updated")
+      promptOptions();
+    })
+})
+})})};
