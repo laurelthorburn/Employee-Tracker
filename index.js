@@ -92,8 +92,7 @@ function addDepartment(){
   .then(function (answer) {
     //add to database here
     console.log(answer.departmentName);
-    db.query("INSERT INTO department (name) VALUES (?)", [answer.departmentName], function (err, results) { //not working
-     console.log(err)
+    db.query("INSERT INTO department (name) VALUES (?)", [answer.departmentName], function (err, results) { // working, the placeholder needed to be in ()
     })
     // console.log("Added " + answers.departmentName + " to departments"); //works
     promptOptions();
@@ -126,6 +125,10 @@ function addRole(){
     console.log(answers.roleSalary); //works
     console.log(answers.roleDepartment); //works
     //need to add to the database
+
+    db.query("INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)", [answers.roleName, answers.roleSalary, answers.roleDepartment], function (err, results) { // working, the placeholder needed to be in ()
+      console.log(err);
+    })
     promptOptions();
   })
 };
