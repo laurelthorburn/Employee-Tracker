@@ -77,7 +77,7 @@ function promptOptions() {
   })
 };
 
-// ------------------------------------------------------------------ ADDING DEPARTMENT/ROLE/EMPLOYEE -----------------------------------------
+// ---------------------------------------- ADDING DEPARTMENT/ROLE/EMPLOYEE -----------------------------------------
 //Add a Department Prompts and need to add to database once entered
 function addDepartment(){
   return inquirer.prompt([
@@ -171,7 +171,7 @@ function addEmployee(){
   })
 };
 
-// ------------------------------------------------------------------ VIEWING DEPARTMENT/ROLE/EMPLOYEE -----------------------------------------
+// --------------------------------------- VIEWING DEPARTMENT/ROLE/EMPLOYEE -----------------------------------------
 function viewDepartments(){
   db.query('SELECT * FROM employeetracker_db.department;', function (err, results) {
     console.table(results);
@@ -200,7 +200,7 @@ function viewRoles(){
     })
 };
 
-// ------------------------------------------------------------------ UPDATING EMPLOYEE -----------------------------------------
+// --------------------------------------- UPDATING EMPLOYEE -----------------------------------------
 function updateEmployee(){
   db.query('SELECT * FROM employeetracker_db.employee;', function (err, results) {
     let employeeNameArray = [];
