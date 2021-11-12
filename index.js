@@ -2,7 +2,6 @@
 
 const inquirer = require('inquirer');
 const mysql = require('mysql2');
-// const db = require('./db/config'); //jumps prompt
 
 // -----------------------------------
 // const mysql = require('mysql2');
@@ -205,29 +204,34 @@ function viewRoles(){
 function updateEmployee(){
   db.query('SELECT * FROM employeetracker_db.employee;', function (err, results) {
     let employeeNameArray = [];
-    results.forEach(result => employeeNameArray.push(result.first_name + ' ' + result.last_name));
+  results.forEach(result => employeeNameArray.push({name: result.first_name + ' ' + result.last_name, value: result.id})); //look into map
     return inquirer.prompt([
       {
         type: "list",
         name: "updateEmployee",
         choices: employeeNameArray
       },
-    ]) //maybe promise.all
+    ])
     .then((answer) => {
-    console.log(answer);
-      db.query('SELECT * FROM employeetracker_db.role;', function (err, results) {
-        let roleArray = [];
-        results.forEach(result => roleArray.push(result.title));
-        return inquirer.prompt([
-          {
-            type: "list",
-            name: "updateEmployee",
-            choices: roleArray
-          },
-        ])
-    .then((answer) => {
-      console.log("Employee has been updated")
-      promptOptions();
-    })
+
+      // so now i need to get the employee's id based off the name selected and then i need to write an update that updates the role where the id = that employee's id
+      //there is the LIKE operator
+    console.log(answer.updateEmployee); // i display the name Robert Parsons
+      db.query('SELECT * FROM employeetracker_db.employee WHERE first_name LIKE "%?%"', answer.updateEmployee, function (err, results) {
+        // console.table(results);
+    //     let roleArray = [];
+    //     results.forEach(result => roleArray.push(result.title));
+    //     return inquirer.prompt([
+    //       {
+    //         type: "list",
+    //         name: "updateEmployee",
+    //         choices: roleArray
+    //       },
+    //     ])
+    // .then((answer) => {
+    //   console.log("Employee has been updated")
+    //   promptOptions();
+    // })
 })
-})})};
+})
+})};
