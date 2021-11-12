@@ -45,7 +45,7 @@ function promptOptions() {
  
   .then((answers) => {
  
-      console.log(answers); //{ displayOptions: 'Add Department' }
+      // console.log(answers); //{ displayOptions: 'Add Department' }
     if (answers.displayOptions === "View All Departments"){
         viewDepartments();
         // console.log("View All Departments was selected");
@@ -90,7 +90,7 @@ function addDepartment(){
   ])
   .then(function (answer) {
     //add to database here
-    console.log(answer.departmentName);
+    // console.log(answer.departmentName);
     db.query("INSERT INTO department (name) VALUES (?)", [answer.departmentName], function (err, results) { // working, the placeholder needed to be in ()
     })
     // console.log("Added " + answers.departmentName + " to departments"); //works
@@ -120,9 +120,9 @@ function addRole(){
   ])
   .then((answers) => {
     //add to database here
-    console.log(answers.roleName); //works
-    console.log(answers.roleSalary); //works
-    console.log(answers.roleDepartment); //works
+    // console.log(answers.roleName); //works
+    // console.log(answers.roleSalary); //works
+    // console.log(answers.roleDepartment); //works
     //need to add to the database
 
     db.query("INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)", [answers.roleName, answers.roleSalary, answers.roleDepartment], function (err, results) { // working, the placeholder needed to be in ()
@@ -159,10 +159,10 @@ function addEmployee(){
   ])
   .then((answers) => {
     //add to database here
-    console.log(answers.employeeFirstName); //works
-    console.log(answers.employeeLastName); //works
-    console.log(answers.employeeRole); //works
-    console.log(answers.employeeManager); //works
+    // console.log(answers.employeeFirstName); //works
+    // console.log(answers.employeeLastName); //works
+    // console.log(answers.employeeRole); //works
+    // console.log(answers.employeeManager); //works
     //add to the database
     db.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)", [answers.employeeFirstName, answers.employeeLastName, answers.employeeRole, answers.employeeManager], function (err, results) { // working, the placeholder needed to be in ()
       console.log(err);
@@ -178,7 +178,7 @@ function viewDepartments(){
     promptOptions();
   });
 
-    console.log("You are viewing all of the departments :)");
+    // console.log("You are viewing all of the departments :)");
 };
 
 function viewEmployees(){
@@ -187,12 +187,12 @@ function viewEmployees(){
     console.table(results);
     promptOptions();
 
-    console.log("You are viewing all of the employees :)");
+    // console.log("You are viewing all of the employees :)");
 })
 };
 
 function viewRoles(){
-    console.log("You are viewing all of the roles :)");
+    // console.log("You are viewing all of the roles :)");
 
     db.query('SELECT * FROM employeetracker_db.role;', function (err, results) {
       console.table(results);
@@ -214,10 +214,10 @@ function updateEmployee(){
       
     ])
     .then((answer) => {
-    console.log("Employee's ID: " + answer.updateEmployee); //logs employee's custom ID #
+    // console.log("Employee's ID: " + answer.updateEmployee); //logs employee's custom ID #
       let employeeID = answer.updateEmployee;
     db.query('SELECT * FROM employeetracker_db.role;', function (err, results) {
-      console.table(results); //logs role table, id is referencing roles
+      // console.table(results); //logs role table, id is referencing roles
       let roleOptions = [];
     results.forEach(result => roleOptions.push({name: result.title, value: result.id}));
 
@@ -234,8 +234,8 @@ function updateEmployee(){
 
       // UPDATE table_name SET column1 = value1, column2 = value2, ... WHERE condition;
       db.query('UPDATE employeetracker_db.employee SET role_id = ? WHERE id = ?', [roleID, employeeID], function (err, results) {
-        console.log("Employee has been updated");
-        console.table(results);
+        // console.log("Employee has been updated");
+        // console.table(results);
         promptOptions();
       })
     })
