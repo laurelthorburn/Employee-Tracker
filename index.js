@@ -120,6 +120,7 @@ function addRole(){
     {
       type: "list",
       name: "roleDepartment",
+      message: "What department is the role in?",
       choices: departmentArray
     },
 
@@ -161,6 +162,7 @@ function addEmployee(){
     {
       type: "list",
       name: "employeeRole",
+      message: "What is the employee's role?",
       choices: roleArray
     },
   ])
@@ -177,6 +179,7 @@ function addEmployee(){
       {
         type: "list",
         name: "employeeManager",
+        message: "Who is the employee's manager?",
         choices: employeeNameArray
       },
     ])
@@ -230,6 +233,7 @@ function updateEmployee(){
       {
         type: "list",
         name: "updateEmployee",
+        message: "Which employee would you like to update?",
         choices: employeeNameArray
       },
       
@@ -246,6 +250,7 @@ function updateEmployee(){
           {
             type: "list",
             name: "updateRole",
+            message: "What is the employee's new role?",
             choices: roleOptions
           },
         ])
