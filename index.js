@@ -212,8 +212,9 @@ function viewEmployees(){
 function viewRoles(){
     // console.log("You are viewing all of the roles :)");
 
-    db.query('USE employeetracker_db; SELECT * FROM role JOIN department ON role.department_id = department.id;', function (err, results) {
+    db.query("SELECT role.id, role.title, department.name AS department, role.salary FROM role LEFT JOIN department on role.department_id = department.id;", function (err, results) {
       console.table(results);
+      console.log(err);
       promptOptions();
     })
 };
