@@ -229,19 +229,16 @@ function updateEmployee(){
           },
         ])
     .then((answer) => {
-      console.log("Role ID: " + answer.updateRole + " Employee: " + employeeID )
-      
+      let roleID = answer.updateRole; //roleID and employeeID
       // write employee update db.query with selected role value
-      console.log("Employee has been updated")
-      promptOptions();
+
+      // UPDATE table_name SET column1 = value1, column2 = value2, ... WHERE condition;
+      db.query('UPDATE employeetracker_db.employee SET role_id = ? WHERE id = ?', [roleID, employeeID], function (err, results) {
+        console.log("Employee has been updated");
+        console.table(results);
+        promptOptions();
+      })
     })
 })
 })
 })};
-// )};
-
-
-// db.query('SELECT * FROM employeetracker_db.employee WHERE id = ?', answer.updateEmployee, function (err, results) {
-//   // console.table(results);
-//   let roleArray = [];
-// results.forEach(result => roleArray.push({name: result.title, value: result.role_id}));
