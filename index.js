@@ -201,8 +201,9 @@ function viewDepartments(){
 
 function viewEmployees(){
 
-  db.query('SELECT * FROM employeetracker_db.employee;', function (err, results) {
+  db.query("SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name AS department, role.salary, employee.manager_id AS manager FROM employee LEFT JOIN role on employee.id = role.id LEFT JOIN department on role.department_id = department.id", function (err, results) {
     console.table(results);
+    console.log(err)
     promptOptions();
 
     // console.log("You are viewing all of the employees :)");
@@ -214,7 +215,7 @@ function viewRoles(){
 
     db.query("SELECT role.id, role.title, department.name AS department, role.salary FROM role LEFT JOIN department on role.department_id = department.id;", function (err, results) {
       console.table(results);
-      console.log(err);
+      // console.log(err);
       promptOptions();
     })
 };
