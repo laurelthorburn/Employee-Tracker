@@ -135,7 +135,8 @@ function addRole(){
     })
     promptOptions();
   })
-})};
+})
+};
 
 //Add a Employee Prompts and need to add to database once entered
 function addEmployee(){
@@ -185,7 +186,8 @@ function addEmployee(){
     })
     promptOptions();
   })
-})})})};
+})})})
+};
 
 // --------------------------------------- VIEWING DEPARTMENT/ROLE/EMPLOYEE -----------------------------------------
 function viewDepartments(){
@@ -210,7 +212,7 @@ function viewEmployees(){
 function viewRoles(){
     // console.log("You are viewing all of the roles :)");
 
-    db.query('SELECT * FROM employeetracker_db.role;', function (err, results) {
+    db.query('USE employeetracker_db; SELECT * FROM role JOIN department ON role.department_id = department.id;', function (err, results) {
       console.table(results);
       promptOptions();
     })
@@ -257,4 +259,5 @@ function updateEmployee(){
     })
 })
 })
-})};
+})
+};
