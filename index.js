@@ -204,34 +204,44 @@ function viewRoles(){
 function updateEmployee(){
   db.query('SELECT * FROM employeetracker_db.employee;', function (err, results) {
     let employeeNameArray = [];
-  results.forEach(result => employeeNameArray.push({name: result.first_name + ' ' + result.last_name, value: result.id})); //look into map
+  results.forEach(result => employeeNameArray.push({name: result.first_name + ' ' + result.last_name, value: result.id})); //name value is special keyword in obj. for inquirer, same with value.  returns value
     return inquirer.prompt([
       {
         type: "list",
         name: "updateEmployee",
         choices: employeeNameArray
       },
+      
     ])
     .then((answer) => {
+    console.log("Employee's ID: " + answer.updateEmployee); //logs employee's custom ID #
+      let employeeID = answer.updateEmployee;
+    db.query('SELECT * FROM employeetracker_db.role;', function (err, results) {
+      console.table(results); //logs role table, id is referencing roles
+      let roleOptions = [];
+    results.forEach(result => roleOptions.push({name: result.title, value: result.id}));
 
-      // so now i need to get the employee's id based off the name selected and then i need to write an update that updates the role where the id = that employee's id
-      //there is the LIKE operator
-    console.log(answer.updateEmployee); // i display the name Robert Parsons
-      db.query('SELECT * FROM employeetracker_db.employee WHERE first_name LIKE "%?%"', answer.updateEmployee, function (err, results) {
-        // console.table(results);
-    //     let roleArray = [];
-    //     results.forEach(result => roleArray.push(result.title));
-    //     return inquirer.prompt([
-    //       {
-    //         type: "list",
-    //         name: "updateEmployee",
-    //         choices: roleArray
-    //       },
-    //     ])
-    // .then((answer) => {
-    //   console.log("Employee has been updated")
-    //   promptOptions();
-    // })
+        return inquirer.prompt([
+          {
+            type: "list",
+            name: "updateRole",
+            choices: roleOptions
+          },
+        ])
+    .then((answer) => {
+      console.log("Role ID: " + answer.updateRole + " Employee: " + employeeID )
+      
+      // write employee update db.query with selected role value
+      console.log("Employee has been updated")
+      promptOptions();
+    })
 })
 })
 })};
+// )};
+
+
+// db.query('SELECT * FROM employeetracker_db.employee WHERE id = ?', answer.updateEmployee, function (err, results) {
+//   // console.table(results);
+//   let roleArray = [];
+// results.forEach(result => roleArray.push({name: result.title, value: result.role_id}));
