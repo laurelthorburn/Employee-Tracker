@@ -139,6 +139,12 @@ function addRole(){
 
 //Add a Employee Prompts and need to add to database once entered
 function addEmployee(){
+  //add list for role and then manager
+  
+  //add role list here
+  db.query('SELECT * FROM employeetracker_db.role;', function (err, results) {
+    let roleArray = [];
+  results.forEach(result => roleArray.push({name: result.title, value: result.id}));
   return inquirer.prompt([
     {
       type: "input",
@@ -151,30 +157,35 @@ function addEmployee(){
       message: "What is the employee's last name?"
     },
     {
-      type: "input",
+      type: "list",
       name: "employeeRole",
-      message: "What is the employee's role?"
+      choices: roleArray
     },
-    {
-      type: "input",
-      name: "employeeManager",
-      message: "Who is the employee's manager?"
-    },
-
   ])
   .then((answers) => {
-    //add to database here
-    // console.log(answers.employeeFirstName); //works
-    // console.log(answers.employeeLastName); //works
-    // console.log(answers.employeeRole); //works
-    // console.log(answers.employeeManager); //works
     //add to the database
-    db.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)", [answers.employeeFirstName, answers.employeeLastName, answers.employeeRole, answers.employeeManager], function (err, results) { // working, the placeholder needed to be in ()
+    let newFirstName = answers.employeeFirstName;
+    let newLastName = answers.employeeLastName;
+    let newEmployeeRole = answers.employeeRole;
+
+    db.query('SELECT * FROM employeetracker_db.employee;', function (err, results) {
+      let employeeNameArray = [];
+    results.forEach(result => employeeNameArray.push({name: result.first_name + ' ' + result.last_name, value: result.id}));
+    return inquirer.prompt([
+      {
+        type: "list",
+        name: "employeeManager",
+        choices: employeeNameArray
+      },
+    ])
+    .then((answers) => {
+    let managerOptions = answers.employeeManager;
+    db.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)", [newFirstName, newLastName, newEmployeeRole, managerOptions], function (err, results) { // working, the placeholder needed to be in ()
       console.log(err);
     })
     promptOptions();
   })
-};
+})})})};
 
 // --------------------------------------- VIEWING DEPARTMENT/ROLE/EMPLOYEE -----------------------------------------
 function viewDepartments(){
