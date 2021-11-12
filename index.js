@@ -100,6 +100,11 @@ function addDepartment(){
 
 //Add a Role Prompts and need to add to database once entered -- change to choices?
 function addRole(){
+
+  //add department list here
+  db.query('SELECT * FROM employeetracker_db.department;', function (err, results) {
+    let departmentArray = [];
+  results.forEach(result => departmentArray.push({name: result.name, value: result.id}));
   return inquirer.prompt([
     {
       type: "input",
@@ -112,9 +117,9 @@ function addRole(){
       message: "What is the salary of the role?"
     },
     {
-      type: "input",
+      type: "list",
       name: "roleDepartment",
-      message: "What is the department of the role?"
+      choices: departmentArray
     },
 
   ])
@@ -130,7 +135,7 @@ function addRole(){
     })
     promptOptions();
   })
-};
+})};
 
 //Add a Employee Prompts and need to add to database once entered
 function addEmployee(){
