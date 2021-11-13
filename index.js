@@ -49,7 +49,7 @@ function promptOptions() {
         type: "list",
         name: "displayOptions",
         message: "What would you like to do?",
-        choices: ["View All Departments", "View All Roles", "View All Employees", "Add Department", "Add Role", "Add Employee", "Update Employee Role", "Update Employee's Manager"]
+        choices: ["View All Departments", "View All Roles", "View All Employees", "View Employees by Manager", "Add Department", "Add Role", "Add Employee", "Update Employee Role", "Update Employee's Manager"]
     }
   ])
  
@@ -66,6 +66,10 @@ function promptOptions() {
     }
     if (answers.displayOptions === "View All Employees"){
         viewEmployees();
+        // console.log("View All Employees was selected");
+    }
+    if (answers.displayOptions === "View Employees by Manager"){
+        viewEmployeesByManager();
         // console.log("View All Employees was selected");
     }
     if (answers.displayOptions === "Add Department"){
@@ -239,6 +243,30 @@ function viewRoles(){
       // console.log(err);
       promptOptions();
     })
+};
+
+function viewEmployeesByManager(){
+  db.query('SELECT * FROM employeetracker_db.employee WHERE manager_id IS NULL;', function (err, results) {
+    let managerNameArray = [];
+    results.forEach(result => managerNameArray.push({name: result.first_name + ' ' + result.last_name, value: result.id}));
+    // console.log(managerNameArray)
+    return inquirer.prompt([
+      {
+        type: "list",
+        name: "managerNames",
+        message: "Which employee would you like to change managers?",
+        choices: managerNameArray
+      },
+          
+   ])
+  .then((answer) => {
+   let manager = answer.managerNames;
+   db.query('SELECT CONCAT(first_name, " ", last_name) AS employees FROM employee WHERE manager_id = ?', [manager], function (err, results) {
+   console.table(results);
+    promptOptions();
+     })
+})
+})
 };
 
 // --------------------------------------- UPDATING EMPLOYEE -----------------------------------------
