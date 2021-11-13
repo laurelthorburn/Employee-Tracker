@@ -49,7 +49,7 @@ function promptOptions() {
         type: "list",
         name: "displayOptions",
         message: "What would you like to do?",
-        choices: ["View All Departments", "View All Roles", "View All Employees", "Add Department", "Add Role", "Add Employee", "Update Employee Role"]
+        choices: ["View All Departments", "View All Roles", "View All Employees", "Add Department", "Add Role", "Add Employee", "Update Employee Role", "Update Employee's Manager"]
     }
   ])
  
@@ -83,6 +83,9 @@ function promptOptions() {
     if (answers.displayOptions === "Update Employee Role"){
         updateEmployee();
         // console.log("Update Employee Role was selected");
+    }
+    if (answers.displayOptions === "Update Employee's Manager"){
+        updateManager();
     }
   })
 };
@@ -282,4 +285,47 @@ function updateEmployee(){
 })
 })
 })
+};
+
+function updateManager(){
+  db.query('SELECT * FROM employeetracker_db.employee WHERE manager_id IS NOT NULL;', function (err, results) {
+    let employeeNameArray = [];
+  results.forEach(result => employeeNameArray.push({name: result.first_name + ' ' + result.last_name, value: result.id})); //name value is special keyword in obj. for inquirer, same with value.  returns value
+    return inquirer.prompt([
+      {
+        type: "list",
+        name: "updateEmployee",
+        message: "Which employee would you like to change managers?",
+        choices: employeeNameArray
+      },
+      
+    ])
+    .then((answer) => {
+    // console.log("Employee's ID: " + answer.updateEmployee); //logs employee's custom ID #
+      let employeeID = answer.updateEmployee;
+      db.query('SELECT * FROM employeetracker_db.employee WHERE manager_id IS NULL;', function (err, results) {
+        let managerNameArray = [];
+      results.forEach(result => managerNameArray.push({name: result.first_name + ' ' + result.last_name, value: result.id})); //name value is special keyword in obj. for inquirer, same with value.  returns value
+      // console.log(managerNameArray)
+        return inquirer.prompt([
+          {
+            type: "list",
+            name: "updateManager",
+            message: "Which employee would you like to change managers?",
+            choices: managerNameArray
+          },
+          
+        ])
+      .then((answer) => {
+        let manager = answer.updateManager;
+        // console.log("Employee: " + employeeID + " Manager: " + manager); //employee works but manager was undefined
+        db.query('UPDATE employeetracker_db.employee SET manager_id = ? WHERE id = ?', [manager, employeeID], function (err, results) {
+          // console.log("Employee has been updated");
+          // console.table(results);
+          promptOptions();
+        })
+      })
+  })
+  })
+  })
 };
