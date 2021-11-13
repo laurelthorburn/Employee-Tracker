@@ -49,7 +49,7 @@ function promptOptions() {
         type: "list",
         name: "displayOptions",
         message: "What would you like to do?",
-        choices: ["View All Departments", "View All Roles", "View All Employees", "View Employees by Manager", "View Employees by Department", "Add Department", "Add Role", "Add Employee", "Update Employee Role", "Update Employee's Manager"]
+        choices: ["View All Departments", "View All Roles", "View All Employees", "View Employees by Manager", "View Employees by Department", "Add Department", "Add Role", "Add Employee", "Update Employee Role", "Update Employee's Manager", "Delete Department", "Delete Role", "Delete Employee"]
     }
   ])
  
@@ -94,6 +94,15 @@ function promptOptions() {
     }
     if (answers.displayOptions === "Update Employee's Manager"){
         updateManager();
+    }
+    if (answers.displayOptions === "Delete Department"){
+        deleteDepartment();
+    }
+    if (answers.displayOptions === "Delete Role"){
+        deleteRole();
+    }
+    if (answers.displayOptions === "Delete Employee"){
+        deleteEmployee();
     }
   })
 };
@@ -386,3 +395,27 @@ function updateManager(){
   })
   })
 };
+
+// --------------------------------------- DELETING -----------------------------------------
+function deleteDepartment(){
+  db.query('SELECT * FROM employeetracker_db.department;', function (err, results) {
+    // console.table(results); //logs role table, id is referencing roles
+    let departmentOptions = [];
+  results.forEach(result => departmentOptions.push({name: result.name, value: result.id}));
+
+      return inquirer.prompt([
+        {
+          type: "list",
+          name: "deleteDepartment",
+          message: "What is the employee's new role?",
+          choices: departmentOptions
+        },
+      ])
+  .then((answer) => {
+    let departmentID = answer.deleteDepartment;
+    console.log(departmentID)
+    db.query('DELETE FROM department WHERE id = ?', [departmentID], function (err, results) {
+      promptOptions();
+    })
+  })
+})};
