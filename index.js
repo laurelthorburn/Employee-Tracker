@@ -377,7 +377,7 @@ function updateManager(){
           {
             type: "list",
             name: "updateManager",
-            message: "Which employee would you like to change managers?",
+            message: "Who is the employee's new manager?",
             choices: managerNameArray
           },
           
@@ -407,7 +407,7 @@ function deleteDepartment(){
         {
           type: "list",
           name: "deleteDepartment",
-          message: "What is the employee's new role?",
+          message: "Which department would you like to delete?",
           choices: departmentOptions
         },
       ])
@@ -429,7 +429,7 @@ function deleteRole(){
         {
           type: "list",
           name: "deleteRole",
-          message: "What is the employee's new role?",
+          message: "Which role would you like to delete?",
           choices: roleOptions
         },
       ])
@@ -437,6 +437,28 @@ function deleteRole(){
     let roleID = answer.deleteRole;
     console.log(roleID)
     db.query('DELETE FROM role WHERE id = ?', [roleID], function (err, results) {
+      promptOptions();
+    })
+  })
+})};
+function deleteEmployee(){
+  db.query('SELECT * FROM employeetracker_db.employee;', function (err, results) {
+    // console.table(results); //logs employee table, id is referencing employees
+    let employeeOptions = [];
+  results.forEach(result => employeeOptions.push({name: result.first_name + ' ' + result.last_name, value: result.id}));
+// console.log(employeeOptions);
+      return inquirer.prompt([
+        {
+          type: "list",
+          name: "deleteEmployee",
+          message: "Which employee would you like to fire/delete?",
+          choices: employeeOptions
+        },
+      ])
+  .then((answer) => {
+    let employeeID = answer.deleteEmployee;
+    // console.log(employeeID)
+    db.query('DELETE FROM employee WHERE id = ?', [employeeID], function (err, results) {
       promptOptions();
     })
   })
