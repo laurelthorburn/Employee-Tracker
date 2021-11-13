@@ -49,7 +49,7 @@ function promptOptions() {
         type: "list",
         name: "displayOptions",
         message: "What would you like to do?",
-        choices: ["View All Departments", "View All Roles", "View All Employees", "View Employees by Manager", "Add Department", "Add Role", "Add Employee", "Update Employee Role", "Update Employee's Manager"]
+        choices: ["View All Departments", "View All Roles", "View All Employees", "View Employees by Manager", "View Employees by Department", "Add Department", "Add Role", "Add Employee", "Update Employee Role", "Update Employee's Manager"]
     }
   ])
  
@@ -70,6 +70,10 @@ function promptOptions() {
     }
     if (answers.displayOptions === "View Employees by Manager"){
         viewEmployeesByManager();
+        // console.log("View All Employees was selected");
+    }
+    if (answers.displayOptions === "View Employees by Department"){
+        viewEmployeesByDepartment();
         // console.log("View All Employees was selected");
     }
     if (answers.displayOptions === "Add Department"){
@@ -262,6 +266,31 @@ function viewEmployeesByManager(){
   .then((answer) => {
    let manager = answer.managerNames;
    db.query('SELECT CONCAT(first_name, " ", last_name) AS employees FROM employee WHERE manager_id = ?', [manager], function (err, results) {
+   console.table(results);
+    promptOptions();
+     })
+})
+})
+};
+
+function viewEmployeesByDepartment(){
+  db.query('SELECT * FROM department', function (err, results) {
+    let departmentNameArray = [];
+    results.forEach(result => departmentNameArray.push({name: result.name, value: result.id}));
+    // console.log(departmentNameArray)
+    return inquirer.prompt([
+      {
+        type: "list",
+        name: "departmentNames",
+        message: "Which department employees would you like to view?",
+        choices: departmentNameArray
+      },
+          
+   ])
+  .then((answer) => {
+   let department = answer.departmentNames;
+   console.log(department)
+   db.query('SELECT CONCAT(first_name, " ", last_name) AS employees FROM employee JOIN role ON employee.role_id = role.id WHERE role.department_id = ?', [department], function (err, results) {
    console.table(results);
     promptOptions();
      })
