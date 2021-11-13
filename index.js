@@ -49,7 +49,7 @@ function promptOptions() {
         type: "list",
         name: "displayOptions",
         message: "What would you like to do?",
-        choices: ["View All Departments", "View All Roles", "View All Employees", "View Employees by Manager", "View Employees by Department", "Add Department", "Add Role", "Add Employee", "Update Employee Role", "Update Employee's Manager", "Delete Department", "Delete Role", "Delete Employee"]
+        choices: ["View All Departments", "View All Roles", "View All Employees", "View Employees by Manager", "View Employees by Department", "Add Department", "Add Role", "Add Employee", "Update Employee Role", "Update Employee's Manager", "Delete Department", "Delete Role", "Delete Employee", "View Department Budget"]
     }
   ])
  
@@ -103,6 +103,9 @@ function promptOptions() {
     }
     if (answers.displayOptions === "Delete Employee"){
         deleteEmployee();
+    }
+    if (answers.displayOptions === "View Department Budget"){
+        viewBudget();
     }
   })
 };
@@ -459,6 +462,30 @@ function deleteEmployee(){
     let employeeID = answer.deleteEmployee;
     // console.log(employeeID)
     db.query('DELETE FROM employee WHERE id = ?', [employeeID], function (err, results) {
+      promptOptions();
+    })
+  })
+})};
+
+// --------------------------------------- BUDGET -----------------------------------------
+function viewBudget(){
+  db.query('SELECT * FROM employeetracker_db.department;', function (err, results) {
+    // console.table(results); //logs role table, id is referencing roles
+    let departmentOptions = [];
+  results.forEach(result => departmentOptions.push({name: result.name, value: result.id}));
+
+      return inquirer.prompt([
+        {
+          type: "list",
+          name: "viewDepartment",
+          message: "Which department's budget would you like to view?",
+          choices: departmentOptions
+        },
+      ])
+  .then((answer) => {
+    let departmentID = answer.viewDepartment;
+    db.query('SELECT SUM(role.salary) from employee JOIN role ON employee.role_id = role.id WHERE role.department_id = ?', [departmentID], function (err, results) {
+      console.table(results)
       promptOptions();
     })
   })
