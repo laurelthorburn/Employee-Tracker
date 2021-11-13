@@ -1,7 +1,8 @@
-//enter all prompts here
+//dependencies 
 
 const inquirer = require('inquirer');
 const mysql = require('mysql2');
+const figlet = require("figlet"); // text ary
 
 // -----------------------------------
 // const mysql = require('mysql2');
@@ -28,9 +29,17 @@ const db = mysql.createConnection(
 
 // ------------------------------------------
 
+//word art
+figlet.text(
+  `Employee Tracker
+  by: Laurel Thorburn`, function (err, data){
+  console.log(data)
 
-//begin function with manager questions
+  //begin function with manager questions
 promptOptions()
+
+ });
+
 
 //manager questions built into a function
 function promptOptions() {
