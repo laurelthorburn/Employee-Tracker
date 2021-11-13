@@ -419,3 +419,25 @@ function deleteDepartment(){
     })
   })
 })};
+function deleteRole(){
+  db.query('SELECT * FROM employeetracker_db.role;', function (err, results) {
+    // console.table(results); //logs role table, id is referencing roles
+    let roleOptions = [];
+  results.forEach(result => roleOptions.push({name: result.title, value: result.id}));
+
+      return inquirer.prompt([
+        {
+          type: "list",
+          name: "deleteRole",
+          message: "What is the employee's new role?",
+          choices: roleOptions
+        },
+      ])
+  .then((answer) => {
+    let roleID = answer.deleteRole;
+    console.log(roleID)
+    db.query('DELETE FROM role WHERE id = ?', [roleID], function (err, results) {
+      promptOptions();
+    })
+  })
+})};
