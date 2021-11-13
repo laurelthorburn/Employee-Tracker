@@ -157,6 +157,7 @@ function addEmployee(){
   db.query('SELECT * FROM employeetracker_db.role;', function (err, results) {
     let roleArray = [];
   results.forEach(result => roleArray.push({name: result.title, value: result.id}));
+  console.log(roleArray);
   return inquirer.prompt([
     {
       type: "input",
@@ -176,14 +177,17 @@ function addEmployee(){
     },
   ])
   .then((answers) => {
+    // console.log("BLAH: " + answers.employeeRole); // i work
     //add to the database
     let newFirstName = answers.employeeFirstName;
     let newLastName = answers.employeeLastName;
-    let newEmployeeRole = answers.employeeRole;
+    let newEmployeeRole = answers.employeeRole; 
+    console.log(newEmployeeRole); //works
 
     db.query('SELECT * FROM employeetracker_db.employee;', function (err, results) {
       let employeeNameArray = [];
     results.forEach(result => employeeNameArray.push({name: result.first_name + ' ' + result.last_name, value: result.id}));
+
     return inquirer.prompt([
       {
         type: "list",
@@ -194,7 +198,9 @@ function addEmployee(){
     ])
     .then((answers) => {
     let managerOptions = answers.employeeManager;
+    console.log(newEmployeeRole); //works
     db.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)", [newFirstName, newLastName, newEmployeeRole, managerOptions], function (err, results) { // working, the placeholder needed to be in ()
+      // console.table(results);
       console.log(err);
     })
     promptOptions();
