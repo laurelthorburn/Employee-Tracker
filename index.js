@@ -180,7 +180,7 @@ function addEmployee(){
   db.query('SELECT * FROM employeetracker_db.role;', function (err, results) {
     let roleArray = [];
   results.forEach(result => roleArray.push({name: result.title, value: result.id}));
-  console.log(roleArray);
+  // console.log(roleArray);
   return inquirer.prompt([
     {
       type: "input",
@@ -205,7 +205,7 @@ function addEmployee(){
     let newFirstName = answers.employeeFirstName;
     let newLastName = answers.employeeLastName;
     let newEmployeeRole = answers.employeeRole; 
-    console.log(newEmployeeRole); //works
+    // console.log(newEmployeeRole); //works
 
     db.query('SELECT * FROM employeetracker_db.employee;', function (err, results) {
       let employeeNameArray = [];
@@ -221,7 +221,7 @@ function addEmployee(){
     ])
     .then((answers) => {
     let managerOptions = answers.employeeManager;
-    console.log(newEmployeeRole); //works
+    // console.log(newEmployeeRole); //works
     db.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)", [newFirstName, newLastName, newEmployeeRole, managerOptions], function (err, results) { // working, the placeholder needed to be in ()
       // console.table(results);
       console.log(err);
@@ -256,7 +256,9 @@ function viewRoles(){
 
     db.query("SELECT role.id, role.title, department.name AS department, role.salary FROM role LEFT JOIN department on role.department_id = department.id;", function (err, results) {
       console.table(results);
-      // console.log(err);
+      if(err){
+        console.log(err);
+      };
       promptOptions();
     })
 };
@@ -301,7 +303,7 @@ function viewEmployeesByDepartment(){
    ])
   .then((answer) => {
    let department = answer.departmentNames;
-   console.log(department)
+  //  console.log(department)
    db.query('SELECT CONCAT(first_name, " ", last_name) AS employees FROM employee JOIN role ON employee.role_id = role.id WHERE role.department_id = ?', [department], function (err, results) {
    console.table(results);
     promptOptions();
@@ -416,7 +418,7 @@ function deleteDepartment(){
       ])
   .then((answer) => {
     let departmentID = answer.deleteDepartment;
-    console.log(departmentID)
+    // console.log(departmentID)
     db.query('DELETE FROM department WHERE id = ?', [departmentID], function (err, results) {
       promptOptions();
     })
@@ -438,7 +440,7 @@ function deleteRole(){
       ])
   .then((answer) => {
     let roleID = answer.deleteRole;
-    console.log(roleID)
+    // console.log(roleID)
     db.query('DELETE FROM role WHERE id = ?', [roleID], function (err, results) {
       promptOptions();
     })
