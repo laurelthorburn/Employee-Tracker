@@ -132,10 +132,9 @@ git push origin yourname-branch
 
   <a name="picsection"></a>
   ## Screenshots
-  ![Screenshot of Home Page](./public/assets/media/screenshot1.png)
-  ![Screenshot of Blank Note](./public/assets/media/screenshot2.png)
-  ![Screenshot of Written Note Sample](./public/assets/media/screenshot3.png)
-  ![Screenshot of Written Note Sample](./public/assets/media/screenshot4.png)
+  ![Screenshot of initiating MYSQL](./assets/media/screenshot1.png)
+  ![Screenshot of logging into MySQL](./assets/media/screenshot2.png)
+  ![Screenshot of initiating Index.JS](./assets/media/screenshot3.png)
 
   <a name="linksection"></a>
   ## Links
