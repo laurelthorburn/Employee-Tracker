@@ -484,7 +484,7 @@ function viewBudget(){
       ])
   .then((answer) => {
     let departmentID = answer.viewDepartment;
-    db.query('SELECT SUM(role.salary) from employee JOIN role ON employee.role_id = role.id WHERE role.department_id = ?', [departmentID], function (err, results) {
+    db.query('SELECT SUM(role.salary) AS department_budget from employee JOIN role ON employee.role_id = role.id WHERE role.department_id = ?', [departmentID], function (err, results) {
       console.table(results)
       promptOptions();
     })
