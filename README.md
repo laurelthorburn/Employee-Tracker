@@ -128,7 +128,7 @@ git push origin yourname-branch
   
   <a name="videosection"></a>
 ## Video
-   ![Screenshot of Test Screen](./public/assets/media/videosample.gif)
+   Video Link: https://drive.google.com/file/d/1-uhkW5Y9-vKA4qRF6Kkk9C1Y7vyxX09Y/view?usp=sharing
 
   <a name="picsection"></a>
   ## Screenshots
