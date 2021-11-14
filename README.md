@@ -59,9 +59,17 @@ THEN I am prompted to select an employee to update and their new role and this i
 git clone https://github.com/laurelthorburn/Employee-Tracker.git
 ```
 * Ensure you are in the current working directory
+* Open terminal in working directory and type:
+```
+npm init
+```
 * Install dependencies (inquirer, mysql2, dotenv, and figlet) by opening the terminal (ctrl + j on windows) and running:
 ```
-npm install || npm install inquirer || npm install mysql2 || npm install dotenv || npm install figlet
+npm install
+```
+OR each of the following (preferred method in order to ensure all required dependencies are installed):
+```
+npm install inquirer || npm install mysql2 || npm install dotenv || npm install figlet
 ```
 
 <a name="usagesection"></a>
@@ -136,14 +144,7 @@ git push origin yourname-branch
 
   <a name="creditsection"></a>
 ## Resources/Credit
-* https://www.npmjs.com/package/uniqid
-* https://developer.mozilla.org/en-US/docs/Web/API/Response/json
-* https://stackoverflow.com/questions/11625519/how-to-access-the-request-body-when-posting-using-node-js-and-express
-* https://stackoverflow.com/questions/20458890/delete-data-from-json-array
-* https://www.youtube.com/watch?v=pKd0Rpw7O48&t=3153s&ab_channel=ProgrammingwithMosh
-* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
-* https://www.youtube.com/watch?v=K9jTQPb0Xso&ab_channel=BrettM
-
+* 
 
 
 
