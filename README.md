@@ -78,7 +78,7 @@ npm install inquirer || npm install mysql2 || npm install dotenv || npm install 
 ```
 mysql -u root -p
 ```
-* Enter mysql password and then SOURCE the schema file and then the seeds file
+* Enter mysql password and then SOURCE the schema file and then the seeds file (always SOURCE schema.sql first)
 ```
 SOURCE schema.sql || SOURCE seeds.sql
 ```
