@@ -56,18 +56,25 @@ THEN I am prompted to select an employee to update and their new role and this i
 ## Installation
 * Clone the repository using:
 ```
-git clone https://github.com/laurelthorburn/Note-Taker.git
+git clone https://github.com/laurelthorburn/Employee-Tracker.git
 ```
 * Ensure you are in the current working directory
-* Install dependencies (express) by opening the terminal (ctrl + j on windows) and running:
+* Install dependencies (inquirer, mysql2, dotenv, and figlet) by opening the terminal (ctrl + j on windows) and running:
 ```
-npm install
+npm install || npm install inquirer || npm install mysql2 || npm install dotenv || npm install figlet
 ```
-* Run the project by typing the following in the terminal:
+* Open the database (db) folder in the integrated terminal and log onto mysql:
 ```
-node index.js || nodemon server
+mysql -u root -p
 ```
-
+* Enter mysql password and then SOURCE the schema file and then the seeds file
+```
+SOURCE schema.sql || SOURCE seeds.sql
+```
+* Open index.js in the integrated terminal and type:
+```
+node index.js
+```
 
 <a name="usagesection"></a>
 ## Usage
