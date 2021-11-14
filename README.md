@@ -63,7 +63,10 @@ git clone https://github.com/laurelthorburn/Employee-Tracker.git
 ```
 npm install || npm install inquirer || npm install mysql2 || npm install dotenv || npm install figlet
 ```
-* Open the database (db) folder in the integrated terminal and log onto mysql:
+
+<a name="usagesection"></a>
+## Usage
+*  After following user installation guide above, open the database (db) folder in the integrated terminal and log onto mysql:
 ```
 mysql -u root -p
 ```
@@ -75,10 +78,7 @@ SOURCE schema.sql || SOURCE seeds.sql
 ```
 node index.js
 ```
-
-<a name="usagesection"></a>
-## Usage
-*  See deployed site link below.
+* Enjoy!
 
 <a name="licensesection"></a>
 ## License
@@ -131,10 +131,8 @@ git push origin yourname-branch
 
   <a name="linksection"></a>
   ## Links
-
-  Deployed Heroku Site: https://morning-reaches-98085.herokuapp.com/
   
-  Github Site: https://github.com/laurelthorburn/Note-Taker
+  Github Site: https://github.com/laurelthorburn/Employee-Tracker
 
   <a name="creditsection"></a>
 ## Resources/Credit
