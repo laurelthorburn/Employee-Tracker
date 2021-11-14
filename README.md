@@ -144,7 +144,25 @@ git push origin yourname-branch
 
   <a name="creditsection"></a>
 ## Resources/Credit
-* 
+* https://github.com/datacharmer/test_db
+* https://www.mysqltutorial.org/mysql-cheat-sheet.aspx
+* https://phoenixnap.com/kb/mysql-commands-cheat-sheet
+* https://medium.com/analytics-vidhya/mysql-functions-cheatsheet-with-examples-3a08bb36d074
+* https://www.npmjs.com/package/mysql2
+* https://www.mycompiler.io/new/sql
+* https://stackoverflow.com/questions/675010/what-is-the-question-marks-significance-in-mysql-at-where-column#:~:text=The%20question%20mark%20represents%20a,are%20executing%20the%20query%20from
+* https://dev.mysql.com/doc/refman/8.0/en/sql-prepared-statements.html
+* https://codingstatus.com/how-to-display-data-from-mysql-database-table-in-node-js/
+* https://www.npmjs.com/package/dotenv
+* https://stackoverflow.com/questions/59905401/inquirer-responses-used-in-inserted-to-database-with-mysql
+* https://www.mysqltutorial.org/mysql-nodejs/insert/
+* https://www.npmjs.com/package/inquirer
+* https://www.w3schools.com/sql/func_mysql_concat.asp
+* https://developer.mozilla.org/en-US/docs/Web/API/console/table
+* https://stackoverflow.com/questions/64381195/how-do-you-input-an-ascii-art-image-into-the-console-in-js
+* https://www.npmjs.com/package/figlet
+* https://www.sqlshack.com/working-with-sql-null-values/
+
 
 
 
