@@ -2,7 +2,7 @@
 
 <a name="descsection"></a>
 ## Description
-The purpose of this project was to create a command-line application to manage a company's employee database, using Node.js, Inquirer, MySQL, DOTENV, and Figlet.  Once deployed in the user's console, the user is prompted with a number of options (e.g., view all employees, add an employee, delete an employee, etc.) in order to manager their company's employees, roles, and departments. 
+The purpose of this project was to create a command-line application to manage a company's employee database, using Node.js, Inquirer, MySQL, dotenv, and figlet.  Once deployed in the user's console, the user is prompted with a number of options (e.g., view all employees, add an employee, delete an employee, etc.) in order to manager their company's employees, roles, and departments. 
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
